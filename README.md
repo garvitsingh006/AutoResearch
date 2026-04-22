@@ -2,6 +2,8 @@
 
 A full-stack application that autonomously generates a complete, structured research paper from a single query. A **LangGraph multi-agent pipeline** handles planning, web research, and parallel section writing on the backend. A **React + Vite** frontend lets users sign up, submit topics, and read their generated papers.
 
+### Deployed URL: [Auto Research](https://auto-research-tan.vercel.app/)
+
 ---
 
 ## How It Works
