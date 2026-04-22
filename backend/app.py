@@ -1,10 +1,12 @@
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from auth import get_current_user
-from routers import user, research_paper
+from routers import research_paper
+from routers import user
 from db import get_db, engine
 from db_models import Base, User
-import schemas
+import schemas as schemas
 from utils import create_research_paper
 from models.research_paper_generator import build_graph
 from langgraph.checkpoint.postgres import PostgresSaver
@@ -13,6 +15,14 @@ import os
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:5173")],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 DB_URI_GRAPH = os.getenv("DB_URI_GRAPH")
 
 @app.on_event("startup")

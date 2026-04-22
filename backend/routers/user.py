@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException, Response
 from db import get_db
 from db_models import User
 from sqlalchemy.orm import Session
-import schemas
+import schemas as schemas
 from utils import hash, verify_pwd, create_token
 
 router = APIRouter(

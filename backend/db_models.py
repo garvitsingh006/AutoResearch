@@ -1,5 +1,5 @@
 from sqlalchemy import TIMESTAMP, Column, ForeignKey, Integer, String, Numeric, Boolean, text, Text
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -11,6 +11,7 @@ class User(Base):
     password = Column(String, nullable=False)
     research_papers = Column(Integer, nullable=False, server_default=text("0"))
     created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    papers = relationship("ResearchPaper", back_populates="author", order_by="ResearchPaper.created_at.desc()")
 
 class ResearchPaper(Base):
     __tablename__ = "research_papers"
@@ -19,3 +20,4 @@ class ResearchPaper(Base):
     abstract = Column(Text, nullable=True)
     author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    author = relationship("User", back_populates="papers")

@@ -3,7 +3,7 @@ from jose import jwt
 from datetime import datetime, timedelta, timezone
 import os
 from models.research_paper_generator import State
-import schemas
+import schemas as schemas
 from db_models import User, ResearchPaper
 from sqlalchemy.orm import Session
 
@@ -45,6 +45,7 @@ def create_research_paper(payload: schemas.ResearchPaperInput, current_user: Use
         final_state = workflow.invoke(None, config)
 
         if final_state and "answer" in final_state:
+            existing_paper.title = final_state.get("title", existing_paper.title)
             existing_paper.abstract = final_state["answer"]
             db.commit()
             db.refresh(existing_paper)
@@ -74,6 +75,7 @@ def create_research_paper(payload: schemas.ResearchPaperInput, current_user: Use
 
     final_state = workflow.invoke(initial_state, config)
 
+    new_paper.title = final_state.get("title", payload.query)
     new_paper.abstract = final_state["answer"]
     db.commit()
     db.refresh(new_paper)

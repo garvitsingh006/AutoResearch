@@ -30,6 +30,7 @@ class Source(TypedDict):
     # citation: str
 
 class Plan(TypedDict):
+    title: str
     goal: str
     target_words: int
     section_word_budget: Dict[str, int]
@@ -52,6 +53,7 @@ class Meta(TypedDict):
 
 class State(TypedDict):
     query: str
+    title: str
     step: str
     section_drafts: Annotated[Dict[str, str], merge_dict]
 
@@ -73,6 +75,7 @@ planner_llm = HuggingFaceEndpoint(
 planner_model = ChatHuggingFace(llm=planner_llm)
 
 class PlannerSchema(BaseModel):
+    title: str = Field(description="A concise, academic title for the research paper based on the query.")
     goal: str = Field(description="The research goal or thesis statement of the paper.")
     target_words: int = Field(description="The target length of the paper in words.")
     section_word_budget: Dict[str, int] = Field(description="A mapping of section names to their allocated word counts.")
@@ -100,14 +103,15 @@ planner_prompt = ChatPromptTemplate.from_messages(
                 The goal is to make the work of the research and writing agents easier by clearly defining the objective, structure, and constraints of the paper.
                 Responsibilities:
 
-                1. Define the research goal clearly.
-                2. Determine the target length of the paper.
-                3. Identify the intended audience.
-                4. Choose an appropriate citation style.
-                5. Break the topic into 4–7 research questions.
-                6. Design the full paper structure (sections).
-                7. Allocate word counts to each section.
-                8. Define any important research constraints.
+                1. Generate a concise, academic title for the paper based on the query.
+                2. Define the research goal clearly.
+                3. Determine the target length of the paper.
+                4. Identify the intended audience.
+                5. Choose an appropriate citation style.
+                6. Break the topic into 4–7 research questions.
+                7. Design the full paper structure (sections).
+                8. Allocate word counts to each section.
+                9. Define any important research constraints.
 
                 Guidelines:
 
@@ -139,9 +143,11 @@ def planner(state: State) -> State:
     print("STATE:", state)
     print("Planning...")
     query = state.get("query")
-    response =  planner_chain.invoke({"query": query})
+    response = planner_chain.invoke({"query": query})
     return {
+        "title": response.title,
         "plan": {
+            "title": response.title,
             "goal": response.goal,
             "target_words": response.target_words,
             "section_word_budget": response.section_word_budget,
@@ -315,7 +321,7 @@ def finalize(state: State) -> State:
         drafts[s] for s in state["plan"]["sections"]
     )
 
-    with open("README.md", "w", encoding="utf-8") as f:
+    with open("research_paper.md", "w", encoding="utf-8") as f:
         f.write(paper)
 
     return {"answer": paper, "step": "Successfully Completed"}
