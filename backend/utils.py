@@ -2,7 +2,7 @@ from passlib.context import CryptContext
 from jose import jwt
 from datetime import datetime, timedelta, timezone
 import os
-from models.research_paper_generator import State
+from models.research_paper_generator import State, invoke_graph
 import schemas as schemas
 from db_models import User, ResearchPaper, PaperStatus
 from sqlalchemy.orm import Session
@@ -46,7 +46,7 @@ def create_research_paper(payload: schemas.ResearchPaperInput, current_user: Use
         final_state = None
 
         try:
-            final_state = workflow.invoke(None, config)
+            final_state = invoke_graph(workflow, None, config)
         except Exception as e:
             existing_paper.abstract = f"Generation Failed! The backend couldn't return back the research paper, pls try again.\n\nError: {e}"
             existing_paper.status = PaperStatus.failed
@@ -93,7 +93,7 @@ def create_research_paper(payload: schemas.ResearchPaperInput, current_user: Use
     final_state = None
 
     try:
-        final_state = workflow.invoke(initial_state, config)
+        final_state = invoke_graph(workflow, initial_state, config)
     except Exception as e:
         new_paper.abstract = f"Generation Failed! The backend couldn't return back the research paper, pls try again.\n\nError: {e}"
         new_paper.status = PaperStatus.failed

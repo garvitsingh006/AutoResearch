@@ -28,19 +28,10 @@ DB_URI_GRAPH = os.getenv("DB_URI_GRAPH")
 @app.on_event("startup")
 def startup():
     global workflow
-    global checkpointer_cm
-    global checkpointer
-
-    
-    checkpointer_cm = PostgresSaver.from_conn_string(DB_URI_GRAPH)
-    checkpointer = checkpointer_cm.__enter__()
-    checkpointer.setup()
-
-    workflow = build_graph(checkpointer)
-
-@app.on_event("shutdown")
-def shutdown():
-    checkpointer_cm.__exit__(None, None, None)
+    # setup the checkpoint tables once using a short-lived connection
+    with PostgresSaver.from_conn_string(DB_URI_GRAPH) as checkpointer:
+        checkpointer.setup()
+    workflow = build_graph(DB_URI_GRAPH)
 
 @app.get("/")
 def home():

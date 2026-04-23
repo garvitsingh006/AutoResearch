@@ -8,6 +8,7 @@ from langchain_classic.output_parsers import OutputFixingParser
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Send
+from langgraph.checkpoint.postgres import PostgresSaver
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -327,7 +328,7 @@ def finalize(state: State) -> State:
     return {"answer": paper, "step": "Successfully Completed"}
 
 ## Graph Building
-def build_graph(checkpointer):
+def build_graph(db_uri: str):
     print("Building Graph")
 
     g = StateGraph(State)
@@ -345,15 +346,13 @@ def build_graph(checkpointer):
     g.add_edge("writer", "finalize")
     g.add_edge("finalize", END)
 
-    return g.compile(checkpointer=checkpointer)
+    compiled = g.compile()
+    compiled._db_uri = db_uri
+    return compiled
 
 
-    # initial_state : State = {
-    #     "query": "Does Sleep Deprivation Make You More Creative?"
-    # }
-    # workflow.update_state(
-    #     config,
-    #     {},                # no state change
-    #     as_node="combine"  # resume from this node
-    # )
-    # final_state = workflow.invoke(None, config)
+def invoke_graph(workflow, initial_state, config):
+    """Open a fresh checkpointer connection per invocation to avoid stale connections."""
+    with PostgresSaver.from_conn_string(workflow._db_uri) as checkpointer:
+        app = workflow.with_config({"checkpointer": checkpointer})
+        return app.invoke(initial_state, config)
