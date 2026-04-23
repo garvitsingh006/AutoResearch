@@ -8,7 +8,7 @@ from db import get_db, engine
 from db_models import Base, User
 import schemas as schemas
 from utils import create_research_paper
-from models.research_paper_generator import build_graph
+from models.research_paper_generator import build_graph, invoke_graph
 from langgraph.checkpoint.postgres import PostgresSaver
 import os
 
@@ -28,7 +28,6 @@ DB_URI_GRAPH = os.getenv("DB_URI_GRAPH")
 @app.on_event("startup")
 def startup():
     global workflow
-    # setup the checkpoint tables once using a short-lived connection
     with PostgresSaver.from_conn_string(DB_URI_GRAPH) as checkpointer:
         checkpointer.setup()
     workflow = build_graph(DB_URI_GRAPH)

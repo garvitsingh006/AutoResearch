@@ -346,13 +346,12 @@ def build_graph(db_uri: str):
     g.add_edge("writer", "finalize")
     g.add_edge("finalize", END)
 
-    compiled = g.compile()
-    compiled._db_uri = db_uri
-    return compiled
+    return g, db_uri
 
 
-def invoke_graph(workflow, initial_state, config):
-    """Open a fresh checkpointer connection per invocation to avoid stale connections."""
-    with PostgresSaver.from_conn_string(workflow._db_uri) as checkpointer:
-        app = workflow.with_config({"checkpointer": checkpointer})
+def invoke_graph(graph_tuple, initial_state, config):
+    """Compile graph with a fresh checkpointer connection per invocation."""
+    g, db_uri = graph_tuple
+    with PostgresSaver.from_conn_string(db_uri) as checkpointer:
+        app = g.compile(checkpointer=checkpointer)
         return app.invoke(initial_state, config)
