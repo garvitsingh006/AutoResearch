@@ -22,25 +22,25 @@ export default function Dashboard({ user }) {
     <div className="min-h-screen bg-black">
       <Navbar user={user} />
 
-      <main className="max-w-5xl mx-auto px-6 py-12 pt-24">
-        <div className="mb-12 pb-10">
-          <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-widest mb-3">
+      <main className="max-w-5xl mx-auto px-4 md:px-6 pt-20 pb-12">
+        <div className="mb-10 pt-6">
+          <p className="font-inter font-bold text-xs text-[#FF0055] uppercase tracking-widest mb-3">
             OPERATOR DASHBOARD
           </p>
-          <h1 className="font-bebas text-6xl md:text-8xl text-white leading-none">
+          <h1 className="font-bebas text-5xl md:text-8xl text-white leading-none">
             HELLO,{" "}
             <span className="text-[#EBFF00]">
               {user?.name?.split(" ")[0]?.toUpperCase()}.
             </span>
           </h1>
-          <p className="font-inter font-bold text-white/50 uppercase tracking-wide mt-3">
+          <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-wide mt-3">
             What do you want to research today?
           </p>
         </div>
 
         <button
           onClick={() => navigate("/new")}
-          className="mb-16 font-bebas text-2xl bg-[#FF0055] text-white border-4 border-[#FF0055] px-10 py-4 hover:bg-black hover:border-white transition-all shadow-[8px_8px_0px_0px_rgba(255,0,85,0.4)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+          className="mb-12 w-full sm:w-auto font-bebas text-xl bg-[#FF0055] text-white border-4 border-[#FF0055] px-8 py-3 hover:bg-black hover:border-white transition-all shadow-[8px_8px_0px_0px_rgba(255,0,85,0.4)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
         >
           + NEW RESEARCH PAPER
         </button>
@@ -53,7 +53,7 @@ export default function Dashboard({ user }) {
 
         {papers.length > 0 && (
           <>
-            <h2 className="font-bebas text-4xl text-white mb-6 flex items-center gap-4">
+            <h2 className="font-bebas text-3xl md:text-4xl text-white mb-6 flex items-center gap-4">
               <span className="text-[#FF0055]">▶</span> PAST PAPERS
             </h2>
             <div className="flex flex-col gap-4">
@@ -74,7 +74,7 @@ export default function Dashboard({ user }) {
         )}
 
         {!fetching && papers.length === 0 && !error && (
-          <div className="border-4 border-white/10 p-10 text-center">
+          <div className="border-4 border-white/10 p-8 text-center">
             <p className="font-bebas text-3xl text-white/30">NO PAPERS YET</p>
             <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-2">
               Create your first one above.

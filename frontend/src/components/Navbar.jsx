@@ -23,25 +23,25 @@ export default function Navbar({ user }) {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-black px-6 py-4 flex items-center justify-between transition-transform duration-300 ease-in-out ${visible ? "translate-y-0" : "-translate-y-full"}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-black px-4 py-3 flex items-center justify-between transition-transform duration-300 ease-in-out ${visible ? "translate-y-0" : "-translate-y-full"}`}>
       <span
         onClick={() => navigate("/dashboard")}
-        className="cursor-pointer font-archivo text-xl text-white uppercase tracking-tighter hover:text-[#EBFF00] transition-colors"
+        className="cursor-pointer font-archivo text-lg text-white uppercase tracking-tighter hover:text-[#EBFF00] transition-colors"
       >
         AutoResearch
       </span>
 
       {user && (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => navigate("/new")}
-            className="font-bebas text-lg bg-[#FF0055] text-white border-2 border-[#FF0055] px-5 py-1.5 hover:bg-black hover:border-white transition-colors"
+            className="font-bebas text-base bg-[#FF0055] text-white border-2 border-[#FF0055] px-3 py-1 hover:bg-black hover:border-white transition-colors"
           >
-            NEW PAPER
+            NEW
           </button>
           <button
             onClick={handleLogout}
-            className="font-bebas text-lg border-2 border-white text-white px-5 py-1.5 hover:bg-white hover:text-black transition-colors"
+            className="font-bebas text-base border-2 border-white text-white px-3 py-1 hover:bg-white hover:text-black transition-colors"
           >
             LOGOUT
           </button>

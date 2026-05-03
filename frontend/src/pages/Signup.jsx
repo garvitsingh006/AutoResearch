@@ -26,7 +26,7 @@ export default function Signup({ onAuth }) {
   };
 
   return (
-    <div className="min-h-screen bg-black flex">
+    <div className="min-h-screen bg-black flex flex-col lg:flex-row">
       {/* Left panel */}
       <div className="hidden lg:flex w-1/2 bg-[#EBFF00] flex-col justify-end p-16 relative overflow-hidden">
         <div
@@ -35,35 +35,33 @@ export default function Signup({ onAuth }) {
         >
           AutoResearch
         </div>
-
         <div className="z-10 relative">
           <h2 className="font-bebas text-[9rem] leading-none text-black">
             CREATE<br />ACCOUNT.
           </h2>
         </div>
-
         <div className="absolute bottom-0 right-0 font-archivo text-[22rem] leading-none text-black/10 select-none pointer-events-none translate-x-10 translate-y-10">
           ✦
         </div>
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 flex flex-col justify-center px-12 md:px-24 lg:px-20 xl:px-32">
+      <div className="flex-1 flex flex-col justify-center px-6 py-12 md:px-24 lg:px-20 xl:px-32">
         <div
           onClick={() => navigate("/")}
-          className="lg:hidden font-archivo text-xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors mb-16"
+          className="lg:hidden font-archivo text-xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors mb-10"
         >
           AutoResearch
         </div>
 
-        <p className="font-inter font-bold text-[#EBFF00] uppercase tracking-widest text-xs mb-6">
+        <p className="font-inter font-bold text-[#EBFF00] uppercase tracking-widest text-xs mb-4">
           Start generating papers
         </p>
-        <h1 className="font-bebas text-6xl md:text-7xl text-white leading-none mb-12">
+        <h1 className="font-bebas text-5xl md:text-7xl text-white leading-none mb-8">
           JOIN THE<br />MACHINE.
         </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
           <input
             type="text"
             placeholder="FULL NAME"
@@ -98,13 +96,13 @@ export default function Signup({ onAuth }) {
           <button
             type="submit"
             disabled={loading}
-            className="font-bebas text-2xl bg-[#EBFF00] text-black border-4 border-[#EBFF00] py-4 mt-2 hover:bg-black hover:text-white hover:border-white transition-colors shadow-[8px_8px_0px_0px_rgba(235,255,0,0.3)] disabled:opacity-40"
+            className="font-bebas text-xl bg-[#EBFF00] text-black border-4 border-[#EBFF00] py-3 mt-2 hover:bg-black hover:text-white hover:border-white transition-colors shadow-[8px_8px_0px_0px_rgba(235,255,0,0.3)] disabled:opacity-40"
           >
             {loading ? "CREATING…" : "CREATE ACCOUNT →"}
           </button>
         </form>
 
-        <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-10">
+        <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-8">
           Already a member?{" "}
           <Link to="/login" className="text-[#FF0055] hover:text-white transition-colors">
             Sign in →
