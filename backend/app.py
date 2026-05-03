@@ -2,7 +2,6 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from auth import get_current_user
-from routers import research_paper
 from routers import user
 from db import get_db, engine
 from db_models import Base, User
@@ -18,7 +17,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:5173"), "https://auto-research-tan.vercel.app"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,7 +38,6 @@ def home():
     }
 
 app.include_router(user.router)
-# app.include_router(research_paper.router)
 
 @app.get("/me", response_model=schemas.UserOutput)
 def get_me(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):

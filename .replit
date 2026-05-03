@@ -1,0 +1,50 @@
+modules = ["nodejs-20", "python-3.12", "web", "postgresql-16"]
+[agent]
+expertMode = true
+stack = "BEST_EFFORT_FALLBACK"
+
+[nix]
+channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+USER_AGENT = "AutoResearch/1.0"
+SECRET_KEY = "3b8218ce8547cbe433926f86482ef97636f99fff736206d5c60298910443179b"
+DB_URI_FASTAPI = "postgresql+psycopg://postgres:password@helium:5432/heliumdb"
+DB_URI_GRAPH = "postgresql://postgres:password@helium:5432/heliumdb"
+FRONTEND_URL = "https://51f842b2-5770-4da9-ae3b-3c94f4e5de48-00-30ytaoismy0p9.picard.replit.dev"
+VITE_BACKEND_URL = "/api"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash start.sh"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["bash", "-c", "cd backend && uvicorn app:app --host 0.0.0.0 --port 5000"]
+build = ["bash", "-c", "cd frontend && npm install && npm run build"]

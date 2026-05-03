@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_BACKEND_URL;
+const BASE = import.meta.env.VITE_BACKEND_URL || '/api';
 
 const req = (method, path, body) =>
   fetch(`${BASE}${path}`, {
