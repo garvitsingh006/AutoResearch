@@ -9,24 +9,28 @@ export default function QueryInput({ onSubmit, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-2xl">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <textarea
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter your research topic…"
-        rows={3}
+        placeholder="ENTER YOUR RESEARCH TOPIC…"
+        rows={4}
         disabled={loading}
-        className="w-full resize-none rounded-2xl border border-[#e5e5e5] bg-white px-5 py-3 text-base text-black outline-none focus:ring-1 focus:ring-black/10 disabled:opacity-50"
-        style={{ letterSpacing: "0.16px", lineHeight: 1.6 }}
+        className="bauhaus-input resize-none text-base leading-relaxed"
+        style={{ minHeight: "120px" }}
       />
-      <button
-        type="submit"
-        disabled={loading || !query.trim()}
-        className="self-end px-6 py-2.5 rounded-full bg-black text-white text-sm disabled:opacity-40"
-        style={{ fontWeight: 500 }}
-      >
-        {loading ? "Generating…" : "Generate Paper"}
-      </button>
+      <div className="flex items-center justify-between">
+        <p className="font-inter font-bold text-xs text-white/30 uppercase tracking-widest">
+          {query.length > 0 ? `${query.length} chars` : "Be specific for best results"}
+        </p>
+        <button
+          type="submit"
+          disabled={loading || !query.trim()}
+          className="font-bebas text-xl bg-[#FF0055] text-white border-4 border-[#FF0055] px-10 py-3 hover:bg-black hover:border-white transition-all shadow-[6px_6px_0px_0px_rgba(255,0,85,0.4)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 disabled:opacity-40 disabled:pointer-events-none"
+        >
+          {loading ? "GENERATING…" : "GENERATE PAPER →"}
+        </button>
+      </div>
     </form>
   );
 }

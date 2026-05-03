@@ -10,29 +10,30 @@ export default function Navbar({ user }) {
   };
 
   return (
-    <nav
-      style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}
-      className="sticky top-0 z-50 bg-white px-6 py-3 flex items-center justify-between"
-    >
+    <nav className="sticky top-0 z-50 bg-black border-b-4 border-[#FF0055] px-6 py-4 flex items-center justify-between">
       <span
         onClick={() => navigate("/dashboard")}
-        className="cursor-pointer text-black text-lg"
-        style={{ fontWeight: 300, letterSpacing: "-0.3px" }}
+        className="cursor-pointer font-archivo text-xl text-white uppercase tracking-tighter hover:text-[#EBFF00] transition-colors"
       >
         AutoResearch
       </span>
 
       {user && (
-        <div className="flex items-center gap-3">
-          <span className="text-sm" style={{ color: "#777169" }}>
+        <div className="flex items-center gap-4">
+          <span className="font-inter font-bold text-sm text-white/50 uppercase tracking-wider">
             {user.name}
           </span>
           <button
-            onClick={handleLogout}
-            className="text-sm px-4 py-1.5 rounded-full bg-black text-white"
-            style={{ fontWeight: 500 }}
+            onClick={() => navigate("/new")}
+            className="font-bebas text-lg bg-[#FF0055] text-white border-2 border-[#FF0055] px-5 py-1.5 hover:bg-black hover:border-white transition-colors"
           >
-            Logout
+            NEW PAPER
+          </button>
+          <button
+            onClick={handleLogout}
+            className="font-bebas text-lg border-2 border-white text-white px-5 py-1.5 hover:bg-white hover:text-black transition-colors"
+          >
+            LOGOUT
           </button>
         </div>
       )}

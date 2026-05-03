@@ -3,6 +3,14 @@
 ## Overview
 A full-stack application that autonomously generates complete, structured research papers from a single query. Uses a LangGraph multi-agent pipeline (Planner → Researcher → Combine → parallel Writer → Finalize) on the backend and React + Vite on the frontend.
 
+## Design System — Maximalist Bauhaus
+The entire frontend uses a Maximalist Bauhaus design system:
+- **Fonts**: Bebas Neue (headings/display), Archivo Black (logo/numbers), Inter (body)
+- **Colors**: Black bg, `#FF0055` (hot pink CTA), `#0055FF` (blue), `#FF5500` (orange), `#EBFF00` (yellow)
+- **Elements**: `border-4 border-black` hard edges, `shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]` hard shadows, clip-diagonal sections, skewed Bebas Neue text, no border-radius
+- **CSS classes**: `.font-bebas`, `.font-archivo`, `.bauhaus-input`, `.clip-diagonal`, `.clip-diagonal-reverse`, `.animate-gradient`
+- **Pages**: `/` Landing (public), `/login`, `/signup`, `/dashboard`, `/new`, `/paper`
+
 ## Architecture
 - **Frontend**: React 19 + Vite + Tailwind CSS, runs on port 5000
 - **Backend**: FastAPI + LangGraph, runs on port 8000 (proxied via Vite `/api` path)

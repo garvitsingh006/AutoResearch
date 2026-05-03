@@ -19,43 +19,42 @@ export default function Dashboard({ user }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-black">
       <Navbar user={user} />
 
-      <main className="max-w-3xl mx-auto px-6 py-12">
-        <div className="mb-10">
-          <h1
-            className="text-4xl text-black mb-2"
-            style={{ fontWeight: 300, letterSpacing: "-0.8px", lineHeight: 1.08 }}
-          >
-            Hello, {user?.name?.split(" ")[0]} 👋
+      <main className="max-w-5xl mx-auto px-6 py-12">
+        <div className="mb-12 border-b-4 border-[#FF0055] pb-10">
+          <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-widest mb-3">
+            OPERATOR DASHBOARD
+          </p>
+          <h1 className="font-bebas text-6xl md:text-8xl text-white leading-none">
+            HELLO,{" "}
+            <span className="text-[#EBFF00]">
+              {user?.name?.split(" ")[0]?.toUpperCase()}.
+            </span>
           </h1>
-          <p className="text-base" style={{ color: "#4e4e4e", letterSpacing: "0.16px" }}>
+          <p className="font-inter font-bold text-white/50 uppercase tracking-wide mt-3">
             What do you want to research today?
           </p>
         </div>
 
         <button
           onClick={() => navigate("/new")}
-          className="mb-12 px-6 py-3 rounded-full text-white bg-black text-sm"
-          style={{ fontWeight: 500 }}
+          className="mb-16 font-bebas text-2xl bg-[#FF0055] text-white border-4 border-[#FF0055] px-10 py-4 hover:bg-black hover:border-white transition-all shadow-[8px_8px_0px_0px_rgba(255,0,85,0.4)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
         >
-          + Create New Paper
+          + NEW RESEARCH PAPER
         </button>
 
         {error && (
-          <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3 mb-6">
-            {error}
-          </p>
+          <div className="border-4 border-[#FF0055] bg-[#FF0055]/10 px-4 py-3 mb-8">
+            <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-wide">{error}</p>
+          </div>
         )}
 
         {papers.length > 0 && (
           <>
-            <h2
-              className="text-xl text-black mb-4"
-              style={{ fontWeight: 300, letterSpacing: "-0.3px" }}
-            >
-              Past Papers
+            <h2 className="font-bebas text-4xl text-white mb-6 flex items-center gap-4">
+              <span className="text-[#FF0055]">▶</span> PAST PAPERS
             </h2>
             <div className="flex flex-col gap-4">
               {papers.map((p) => (
@@ -66,16 +65,21 @@ export default function Dashboard({ user }) {
         )}
 
         {fetching && (
-          <div className="flex items-center gap-3">
-            <div className="w-4 h-4 rounded-full border-2 border-black border-t-transparent animate-spin" />
-            <p className="text-sm" style={{ color: "#777169" }}>Fetching your papers…</p>
+          <div className="flex items-center gap-4">
+            <div className="w-5 h-5 border-4 border-[#EBFF00] border-t-transparent animate-spin" />
+            <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-widest">
+              Fetching your papers…
+            </p>
           </div>
         )}
 
         {!fetching && papers.length === 0 && !error && (
-          <p className="text-sm" style={{ color: "#777169" }}>
-            No papers yet. Create your first one above.
-          </p>
+          <div className="border-4 border-white/10 p-10 text-center">
+            <p className="font-bebas text-3xl text-white/30">NO PAPERS YET</p>
+            <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-2">
+              Create your first one above.
+            </p>
+          </div>
         )}
       </main>
     </div>

@@ -25,62 +25,61 @@ export default function Login({ onAuth }) {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4">
-      <div
-        className="w-full max-w-sm rounded-2xl bg-white p-8"
-        style={{
-          boxShadow:
-            "rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px",
-        }}
-      >
-        <h1
-          className="text-3xl text-black mb-1"
-          style={{ fontWeight: 300, letterSpacing: "-0.6px" }}
-        >
-          Welcome back
-        </h1>
-        <p className="text-sm mb-8" style={{ color: "#777169", letterSpacing: "0.14px" }}>
-          Sign in to continue
-        </p>
+    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        <div className="mb-10">
+          <div
+            onClick={() => navigate("/")}
+            className="font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors inline-block mb-10"
+          >
+            AutoResearch
+          </div>
+          <h1 className="font-bebas text-7xl md:text-8xl leading-none text-white mb-2">
+            WELCOME<br />
+            <span className="text-[#FF0055]">BACK.</span>
+          </h1>
+          <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-widest">
+            Sign in to your account
+          </p>
+        </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="email"
-            placeholder="Email"
+            placeholder="EMAIL"
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full rounded-xl border border-[#e5e5e5] px-4 py-2.5 text-sm text-black outline-none focus:ring-1 focus:ring-black/10"
+            className="bauhaus-input"
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="PASSWORD"
             required
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-full rounded-xl border border-[#e5e5e5] px-4 py-2.5 text-sm text-black outline-none focus:ring-1 focus:ring-black/10"
+            className="bauhaus-input"
           />
 
           {error && (
-            <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-2.5">
-              {error}
-            </p>
+            <div className="border-4 border-[#FF0055] bg-[#FF0055]/10 px-4 py-3">
+              <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-wide">{error}</p>
+            </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 rounded-full bg-black text-white text-sm disabled:opacity-40"
-            style={{ fontWeight: 500 }}
+            className="font-bebas text-2xl bg-[#FF0055] text-white border-4 border-[#FF0055] py-4 mt-2 hover:bg-black hover:border-white transition-colors shadow-[8px_8px_0px_0px_rgba(255,0,85,0.4)] disabled:opacity-40"
           >
-            {loading ? "Signing in…" : "Sign In"}
+            {loading ? "SIGNING IN…" : "SIGN IN"}
           </button>
         </form>
 
-        <p className="text-sm text-center mt-6" style={{ color: "#777169" }}>
-          Don't have an account?{" "}
-          <Link to="/signup" className="text-black underline">
-            Sign up
+        <p className="font-inter font-bold text-sm text-white/40 uppercase tracking-widest mt-8 border-t-4 border-white/10 pt-6">
+          No account?{" "}
+          <Link to="/signup" className="text-[#EBFF00] hover:text-white transition-colors">
+            CREATE ONE →
           </Link>
         </p>
       </div>

@@ -24,56 +24,50 @@ export default function NewPaper({ user }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-black">
       <Navbar user={user} />
 
-      <main className="max-w-2xl mx-auto px-6 py-16 flex flex-col items-center">
+      <main className="max-w-3xl mx-auto px-6 py-16">
         {!loading ? (
           <>
-            <h1
-              className="text-4xl text-black mb-3 text-center"
-              style={{ fontWeight: 300, letterSpacing: "-0.8px", lineHeight: 1.08 }}
-            >
-              New Research Paper
+            <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-widest mb-4">
+              DEPLOY NEW PIPELINE
+            </p>
+            <h1 className="font-bebas text-6xl md:text-8xl text-white leading-none mb-2">
+              NEW RESEARCH<br />
+              <span className="text-[#EBFF00]">PAPER.</span>
             </h1>
-            <p
-              className="text-base mb-10 text-center"
-              style={{ color: "#4e4e4e", letterSpacing: "0.16px" }}
-            >
+            <p className="font-inter font-bold text-white/50 uppercase tracking-wide mb-12">
               Enter a topic and the AI pipeline will plan, research, and write a full paper.
             </p>
 
             <QueryInput onSubmit={handleSubmit} loading={loading} />
 
             {error && (
-              <div className="mt-6 w-full max-w-2xl">
-                <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">
-                  {error}
-                </p>
-                <p className="text-xs mt-2 text-center" style={{ color: "#777169" }}>
+              <div className="mt-8 border-4 border-[#FF0055] bg-[#FF0055]/10 p-6">
+                <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-wide mb-2">{error}</p>
+                <p className="font-inter text-xs text-white/40 uppercase tracking-wide mb-4">
                   If this topic was previously started, submitting again will resume from the last checkpoint.
                 </p>
                 <button
                   onClick={() => setError("")}
-                  className="mt-3 mx-auto block px-5 py-2 rounded-full text-sm border border-[#e5e5e5] bg-white"
-                  style={{
-                    boxShadow: "rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.04) 0px 4px 4px",
-                  }}
+                  className="font-bebas text-lg border-2 border-white text-white px-6 py-2 hover:bg-white hover:text-black transition-colors"
                 >
-                  Try Again
+                  TRY AGAIN
                 </button>
               </div>
             )}
           </>
         ) : (
-          <div className="w-full max-w-sm">
-            <h2
-              className="text-2xl text-black mb-2 text-center"
-              style={{ fontWeight: 300, letterSpacing: "-0.4px" }}
-            >
-              Generating your paper
+          <div className="w-full">
+            <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-widest mb-4">
+              PIPELINE ACTIVE
+            </p>
+            <h2 className="font-bebas text-6xl text-white leading-none mb-2">
+              GENERATING<br />
+              <span className="text-[#EBFF00]">YOUR PAPER.</span>
             </h2>
-            <p className="text-sm text-center mb-8" style={{ color: "#777169" }}>
+            <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-widest mb-12">
               This takes a minute or two. Hang tight.
             </p>
             <Loader />

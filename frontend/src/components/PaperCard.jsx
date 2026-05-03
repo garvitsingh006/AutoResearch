@@ -10,25 +10,22 @@ export default function PaperCard({ paper }) {
   return (
     <div
       onClick={() => navigate("/paper", { state: { paper } })}
-      className="bg-white rounded-2xl p-6 cursor-pointer transition-transform hover:-translate-y-0.5"
-      style={{
-        boxShadow:
-          "rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px",
-      }}
+      className="bg-black border-4 border-white/20 p-6 cursor-pointer transition-all hover:-translate-y-1 hover:-translate-x-1 hover:border-[#EBFF00] hover:shadow-[8px_8px_0px_0px_rgba(235,255,0,0.3)]"
     >
-      <h3
-        className="text-lg text-black mb-2 line-clamp-2"
-        style={{ fontWeight: 300, letterSpacing: "-0.2px" }}
-      >
-        {paper.title}
-      </h3>
-      <p
-        className="text-sm line-clamp-3 mb-4"
-        style={{ color: "#777169", letterSpacing: "0.14px", lineHeight: 1.6 }}
-      >
+      <div className="flex items-start justify-between gap-4 mb-3">
+        <h3 className="font-bebas text-2xl text-white leading-tight line-clamp-2">
+          {paper.title}
+        </h3>
+        <span className="font-inter font-bold text-xs text-white/30 uppercase tracking-widest whitespace-nowrap mt-1 shrink-0">
+          {date}
+        </span>
+      </div>
+      <p className="font-inter text-sm text-white/50 line-clamp-2 leading-relaxed mb-4">
         {paper.abstract}
       </p>
-      <p className="text-xs" style={{ color: "#777169" }}>{date}</p>
+      <div className="font-bebas text-sm text-[#FF0055] tracking-widest">
+        OPEN PAPER →
+      </div>
     </div>
   );
 }
