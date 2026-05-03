@@ -26,25 +26,45 @@ export default function Signup({ onAuth }) {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="mb-10">
-          <div
-            onClick={() => navigate("/")}
-            className="font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors inline-block mb-10"
-          >
-            AutoResearch
-          </div>
-          <h1 className="font-bebas text-7xl md:text-8xl leading-none text-white mb-2">
-            JOIN THE<br />
-            <span className="text-[#EBFF00]">MACHINE.</span>
-          </h1>
-          <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-widest">
-            Start generating research papers
-          </p>
+    <div className="min-h-screen bg-black flex">
+      {/* Left panel */}
+      <div className="hidden lg:flex w-1/2 bg-[#EBFF00] flex-col justify-between p-16 relative overflow-hidden">
+        <div
+          onClick={() => navigate("/")}
+          className="font-archivo text-2xl text-black uppercase tracking-tighter cursor-pointer hover:text-[#FF0055] transition-colors z-10 relative"
+        >
+          AutoResearch
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="z-10 relative">
+          <p className="font-inter font-black text-black/50 uppercase tracking-widest text-sm mb-4">Join the machine</p>
+          <h2 className="font-bebas text-[9rem] leading-none text-black">
+            CREATE<br />ACCOUNT.
+          </h2>
+        </div>
+
+        <div className="absolute bottom-0 right-0 font-archivo text-[22rem] leading-none text-black/10 select-none pointer-events-none translate-x-10 translate-y-10">
+          ✦
+        </div>
+      </div>
+
+      {/* Right panel */}
+      <div className="flex-1 flex flex-col justify-center px-12 md:px-24 lg:px-20 xl:px-32">
+        <div
+          onClick={() => navigate("/")}
+          className="lg:hidden font-archivo text-xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors mb-16"
+        >
+          AutoResearch
+        </div>
+
+        <p className="font-inter font-bold text-[#EBFF00] uppercase tracking-widest text-xs mb-6">
+          Start generating papers
+        </p>
+        <h1 className="font-bebas text-6xl md:text-7xl text-white leading-none mb-12">
+          JOIN THE<br />MACHINE.
+        </h1>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm">
           <input
             type="text"
             placeholder="FULL NAME"
@@ -81,14 +101,14 @@ export default function Signup({ onAuth }) {
             disabled={loading}
             className="font-bebas text-2xl bg-[#EBFF00] text-black border-4 border-[#EBFF00] py-4 mt-2 hover:bg-black hover:text-white hover:border-white transition-colors shadow-[8px_8px_0px_0px_rgba(235,255,0,0.3)] disabled:opacity-40"
           >
-            {loading ? "CREATING…" : "CREATE ACCOUNT"}
+            {loading ? "CREATING…" : "CREATE ACCOUNT →"}
           </button>
         </form>
 
-        <p className="font-inter font-bold text-sm text-white/40 uppercase tracking-widest mt-8 border-t-4 border-white/10 pt-6">
+        <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-10">
           Already a member?{" "}
           <Link to="/login" className="text-[#FF0055] hover:text-white transition-colors">
-            SIGN IN →
+            Sign in →
           </Link>
         </p>
       </div>

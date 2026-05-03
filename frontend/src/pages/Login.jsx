@@ -25,25 +25,45 @@ export default function Login({ onAuth }) {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="mb-10">
-          <div
-            onClick={() => navigate("/")}
-            className="font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors inline-block mb-10"
-          >
-            AutoResearch
-          </div>
-          <h1 className="font-bebas text-7xl md:text-8xl leading-none text-white mb-2">
-            WELCOME<br />
-            <span className="text-[#FF0055]">BACK.</span>
-          </h1>
-          <p className="font-inter font-bold text-sm text-white/50 uppercase tracking-widest">
-            Sign in to your account
-          </p>
+    <div className="min-h-screen bg-black flex">
+      {/* Left panel */}
+      <div className="hidden lg:flex w-1/2 bg-[#FF0055] flex-col justify-between p-16 relative overflow-hidden">
+        <div
+          onClick={() => navigate("/")}
+          className="font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-black transition-colors z-10 relative"
+        >
+          AutoResearch
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="z-10 relative">
+          <p className="font-inter font-black text-white/60 uppercase tracking-widest text-sm mb-4">Multi-Agent Pipeline</p>
+          <h2 className="font-bebas text-[10rem] leading-none text-white">
+            SIGN<br />IN.
+          </h2>
+        </div>
+
+        <div className="absolute bottom-0 right-0 font-archivo text-[22rem] leading-none text-white/10 select-none pointer-events-none translate-x-10 translate-y-10">
+          ↗
+        </div>
+      </div>
+
+      {/* Right panel */}
+      <div className="flex-1 flex flex-col justify-center px-12 md:px-24 lg:px-20 xl:px-32">
+        <div
+          onClick={() => navigate("/")}
+          className="lg:hidden font-archivo text-xl text-white uppercase tracking-tighter cursor-pointer hover:text-[#EBFF00] transition-colors mb-16"
+        >
+          AutoResearch
+        </div>
+
+        <p className="font-inter font-bold text-[#FF0055] uppercase tracking-widest text-xs mb-6">
+          Welcome back
+        </p>
+        <h1 className="font-bebas text-6xl md:text-7xl text-white leading-none mb-12">
+          SIGN IN TO<br />YOUR ACCOUNT.
+        </h1>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm">
           <input
             type="email"
             placeholder="EMAIL"
@@ -72,14 +92,14 @@ export default function Login({ onAuth }) {
             disabled={loading}
             className="font-bebas text-2xl bg-[#FF0055] text-white border-4 border-[#FF0055] py-4 mt-2 hover:bg-black hover:border-white transition-colors shadow-[8px_8px_0px_0px_rgba(255,0,85,0.4)] disabled:opacity-40"
           >
-            {loading ? "SIGNING IN…" : "SIGN IN"}
+            {loading ? "SIGNING IN…" : "SIGN IN →"}
           </button>
         </form>
 
-        <p className="font-inter font-bold text-sm text-white/40 uppercase tracking-widest mt-8 border-t-4 border-white/10 pt-6">
+        <p className="font-inter font-bold text-sm text-white/30 uppercase tracking-widest mt-10">
           No account?{" "}
           <Link to="/signup" className="text-[#EBFF00] hover:text-white transition-colors">
-            CREATE ONE →
+            Create one →
           </Link>
         </p>
       </div>
