@@ -174,7 +174,7 @@ export function Brutalist() {
               { id: "04", name: "WRITER", desc: "Parallel section drafting", icon: <Zap /> },
               { id: "05", name: "FINALIZE", desc: "Markdown compilation", icon: <Terminal /> }
             ].map((stage, i) => (
-              <div key={stage.id} className={`brutal-card p-6 animate-fade-up`} style={{ animationDelay: \`\${(i+1)*100}ms\` }}>
+              <div key={stage.id} className="brutal-card p-6 animate-fade-up" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
                 <div className="text-gray-500 font-mono-custom mb-4">{stage.id}</div>
                 <div className="text-[#c8ff00] mb-6">{stage.icon}</div>
                 <h3 className="text-xl font-bold uppercase mb-2">{stage.name}</h3>
