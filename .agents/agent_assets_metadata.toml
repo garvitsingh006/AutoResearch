@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "suCC0j_FBrOvhqGNzOwmZ"
+uri = "file://artifacts/mockup-sandbox/public/images/brutalist-hero.png"
+type = "image"
+title = "Brutalist dark hero abstract art"
+
+[[generated]]
+id = "PsmCpI9hSX0wYpBcq6886"
+uri = "file://artifacts/mockup-sandbox/public/images/minimal-hero.png"
+type = "image"
+title = "Abstract dark minimal geometric tech visualization"
+
+[[generated]]
+id = "0UmCQ6zwLAoa0vBEcuDC1"
+uri = "file://artifacts/mockup-sandbox/public/images/maximalist-hero.png"
+type = "image"
+title = "Bauhaus streetwear background"
