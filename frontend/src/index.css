@@ -11,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: #000000;
   color: #ffffff;
+  overflow-y: scroll;
 }
 
 .font-bebas { font-family: 'Bebas Neue', sans-serif; }

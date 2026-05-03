@@ -27,18 +27,17 @@ export default function Login({ onAuth }) {
   return (
     <div className="min-h-screen bg-black flex">
       {/* Left panel */}
-      <div className="hidden lg:flex w-1/2 bg-[#FF0055] flex-col justify-between p-16 relative overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-[#FF0055] flex-col justify-end p-16 relative overflow-hidden">
         <div
           onClick={() => navigate("/")}
-          className="font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-black transition-colors z-10 relative"
+          className="absolute top-16 left-16 font-archivo text-2xl text-white uppercase tracking-tighter cursor-pointer hover:text-black transition-colors z-10"
         >
           AutoResearch
         </div>
 
         <div className="z-10 relative">
-          <p className="font-inter font-black text-white/60 uppercase tracking-widest text-sm mb-4">Multi-Agent Pipeline</p>
           <h2 className="font-bebas text-[10rem] leading-none text-white">
-            SIGN<br />IN.
+            WELCOME <br /> BACK
           </h2>
         </div>
 

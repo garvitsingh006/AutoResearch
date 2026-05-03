@@ -41,7 +41,7 @@ export default function Landing() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF0055] via-[#0055FF] to-[#FF5500] animate-gradient transform -skew-x-6 relative -top-8 md:-top-16 drop-shadow-[4px_4px_0_#EBFF00]">BY MACHINES.</span>
           </h1>
           <p className="font-inter font-black text-xl md:text-2xl mt-4 md:mt-0 max-w-2xl bg-black p-4 border-l-8 border-[#EBFF00] uppercase tracking-wide">
-            Deploy a LangGraph multi-agent pipeline to autonomously research, synthesize, and write academic papers.
+            A LangGraph multi-agent pipeline to autonomously research, synthesize, and write academic papers.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -129,7 +129,7 @@ export default function Landing() {
 
       <footer className="bg-black py-16 text-center font-inter font-bold text-white/40 uppercase tracking-widest text-sm md:text-base border-t-8 border-[#FF0055]">
         <div className="mb-4 font-archivo text-2xl text-white/80">AUTORESEARCH</div>
-        <p>© {new Date().getFullYear()} // BUILT FOR THE FUTURE // NOT FOR HUMANS</p>
+        <p>© {new Date().getFullYear()} // BUILT FOR THE FUTURE</p>
       </footer>
     </div>
   );

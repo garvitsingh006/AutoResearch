@@ -22,8 +22,8 @@ export default function Dashboard({ user }) {
     <div className="min-h-screen bg-black">
       <Navbar user={user} />
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <div className="mb-12 border-b-4 border-[#FF0055] pb-10">
+      <main className="max-w-5xl mx-auto px-6 py-12 pt-24">
+        <div className="mb-12 pb-10">
           <p className="font-inter font-bold text-sm text-[#FF0055] uppercase tracking-widest mb-3">
             OPERATOR DASHBOARD
           </p>

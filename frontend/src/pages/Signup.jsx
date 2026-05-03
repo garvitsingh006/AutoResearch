@@ -28,16 +28,15 @@ export default function Signup({ onAuth }) {
   return (
     <div className="min-h-screen bg-black flex">
       {/* Left panel */}
-      <div className="hidden lg:flex w-1/2 bg-[#EBFF00] flex-col justify-between p-16 relative overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-[#EBFF00] flex-col justify-end p-16 relative overflow-hidden">
         <div
           onClick={() => navigate("/")}
-          className="font-archivo text-2xl text-black uppercase tracking-tighter cursor-pointer hover:text-[#FF0055] transition-colors z-10 relative"
+          className="absolute top-16 left-16 font-archivo text-2xl text-black uppercase tracking-tighter cursor-pointer hover:text-[#FF0055] transition-colors z-10"
         >
           AutoResearch
         </div>
 
         <div className="z-10 relative">
-          <p className="font-inter font-black text-black/50 uppercase tracking-widest text-sm mb-4">Join the machine</p>
           <h2 className="font-bebas text-[9rem] leading-none text-black">
             CREATE<br />ACCOUNT.
           </h2>
